@@ -1,0 +1,48 @@
+aside {
+  width: 220px;
+  min-width: 220px;
+  height: 100%;
+  background-color: #1c112c;
+  color: #ffffff;
+  transition: width 0.3s;
+  overflow: hidden;
+  margin: 0;
+  padding: 1rem 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+.sidebar-header {
+  display: flex;
+  justify-content: center;
+}
+
+aside.closed {
+  width: 70px;
+  min-width: 70px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin: 0.5rem 0;
+}
+
+.nav-item a {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.nav-item a .icon {
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.nav-item a:hover {
+  background-color: #2a2f58;
+}

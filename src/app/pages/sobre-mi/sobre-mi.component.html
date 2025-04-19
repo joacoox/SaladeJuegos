@@ -1,0 +1,13 @@
+@if (this.apiService.userDataDisplay()) {
+  <div class="profile-card">
+    <img [src]="this.apiService.userDataDisplay().avatar_url" alt="Avatar del usuario" />
+    <div class="profile-info">
+      <h2>{{ this.apiService.userDataDisplay().name }}</h2>
+      <p><b>ID:</b> {{ this.apiService.userDataDisplay().id }}</p>
+      <p><b>BIO:</b> {{ this.apiService.userDataDisplay().bio }}</p>
+      <p><b>HTML URL: </b> <a href="{{ this.apiService.userDataDisplay().html_url }}" target="_blank">{{ this.apiService.userDataDisplay().html_url }}</a></p>
+    </div>
+  </div>
+}
+
+

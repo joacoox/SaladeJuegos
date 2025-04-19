@@ -1,0 +1,52 @@
+<div id="container">
+  <div id="form-container">
+    <p id="title">Inicio de sesion</p>
+    <form id="form" [formGroup]="formulario">
+      <div id="input-group-username" class="input-group-login">
+        <label for="username">Email</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder=""
+          formControlName="email"
+        />
+      </div>
+      <div id="input-group-password" class="input-group-login">
+        <label for="password">Clave</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder=""
+          formControlName="password"
+        />
+        <div id="forgot" class="forgot">
+          <a rel="noopener noreferrer" (click)="goTo('/registro')"
+            >No tenes cuenta?</a
+          >
+        </div>
+      </div>
+      @if(flagError){
+        <p id="error-register">{{ msjError }}</p>
+        }
+      <button id="sign" (click)="login()">Ingresar</button>
+    </form>
+    <div id="social-message" class="social-message">
+      <div id="line1" class="line"></div>
+
+      <div id="line2" class="line"></div>
+    </div>
+    <p id="signup" class="signup">
+      Queres autologearte?
+      <a
+        rel="noopener noreferrer"
+        id="auto-login"
+        class=""
+        (click)="AutoLogin()"
+        >Clickea aqui!</a
+      >
+    </p>
+  </div>
+</div>
+

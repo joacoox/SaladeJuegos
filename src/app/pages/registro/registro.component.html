@@ -1,0 +1,47 @@
+<div id="container">
+  <div id="form-container">
+    <p id="title">Registrate</p>
+    <form id="form" [formGroup]="formulario">
+      <div id="input-group-username" class="input-group-login">
+        <label for="username">Email</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder=""
+          formControlName="email"
+        />
+      </div>
+      <div id="input-group-password" class="input-group-login">
+        <label for="password">Clave</label>
+        <input
+          type="password"
+          name="password"
+          placeholder=""
+          formControlName="password"
+        />
+        <label for="password">Repeti tu clave</label>
+        <input
+          type="password"
+          name="password"
+          placeholder=""
+          formControlName="repeatPassword"
+        />
+        <div id="forgot" class="forgot">
+          <a rel="noopener noreferrer" (click)="goTo('/login')"
+            >Ya tenes una cuenta?</a
+          >
+        </div>
+      </div>
+      @if(flagError){
+      <p id="error-register">{{ msjError }}</p>
+      }
+      <button id="sign" (click)="registrar()">Ingresar</button>
+    </form>
+    <div id="social-message" class="social-message">
+      <div id="line1" class="line"></div>
+
+      <div id="line2" class="line"></div>
+    </div>
+  </div>
+</div>

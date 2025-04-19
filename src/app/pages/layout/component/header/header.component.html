@@ -1,0 +1,21 @@
+<header class="header">
+
+  <div class="sub-header">
+
+    <div class="header-left">
+      <button class="toggle-btn" (click)="toggleSidebar.emit()">☰</button>
+      <span class="title">Sala de Juegos</span>
+    </div>
+
+    <div class="header-right">
+      <div class="user-avatar" (click)="openUserModal()">
+        <img src="assets/user.png" alt="Usuario" class="avatar" />
+      </div>
+      <button class="btn-logout" (click)="auth.cerrarSesion()">
+        Cerrar Sesión
+      </button>
+    </div>
+    
+  </div>
+
+</header>
