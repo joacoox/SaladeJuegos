@@ -69,3 +69,61 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
 }
+
+.btn-login {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #118ab2;           
+  color: #f9f7f3;
+  border: none;
+  border-radius: 0.375rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-login:hover {
+  background-color: #073b4c;            
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-login:active {
+  background-color: #073b4c;           
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-login:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+}
+
+.btn-register {
+  margin-left: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #06d6a0;            
+  color: #f9f7f3;
+  border: none;
+  border-radius: 0.375rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-register:hover {
+  background-color: #386641;            
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+.btn-register:active {
+  background-color: #386641;            
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-register:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(72, 187, 120, 0.6);
+}

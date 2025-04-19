@@ -1,6 +1,28 @@
 <div id="container">
   <div id="form-container">
-    <p id="title">Inicio de sesion</p>
+    <div class="btn-home-container">
+    <button class="btn-home" (click)="goTo('/home')" aria-label="Ir al inicio">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="home-icon"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        aria-hidden="true"
+        role="img"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3 9.75L12 3l9 6.75V20a.75.75 0 01-.75.75h-5.25v-5.25a.75.75 0 
+                 00-.75-.75h-3a.75.75 0 00-.75.75V20H3.75A.75.75 0 013 
+                 20V9.75z"
+        />
+      </svg>
+    </button>
+  </div>
+  <p id="title">Inicio de sesion</p>
     <form id="form" [formGroup]="formulario">
       <div id="input-group-username" class="input-group-login">
         <label for="username">Email</label>
@@ -27,9 +49,9 @@
           >
         </div>
       </div>
-      @if(flagError){
-        <p id="error-register">{{ msjError }}</p>
-        }
+      @if(flagError()){
+      <p id="error-register">{{ msjError }}</p>
+      }
       <button id="sign" (click)="login()">Ingresar</button>
     </form>
     <div id="social-message" class="social-message">
@@ -48,5 +70,7 @@
       >
     </p>
   </div>
+  @if(isLoading()) {
+  <app-spinner></app-spinner>
+  }
 </div>
-

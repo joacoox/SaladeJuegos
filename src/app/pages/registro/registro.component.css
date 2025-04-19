@@ -139,3 +139,37 @@
 	text-align: center;          
   }
   
+  .btn-home {           
+	background-color: rgba(167, 139, 250, 1); 
+	border: none;
+	border-radius: 0.375rem;              
+	padding: 0.5rem;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+	cursor: pointer;
+	transition: background-color 0.2s ease, transform 0.2s ease; 
+  }
+  .btn-home-container {
+	display: flex;
+	justify-content: flex-end;
+  }
+  .home-icon {
+	width: 24px;
+	height: 24px;
+	color: #ffffff;       
+	display: block;      
+  }
+
+  .btn-home:hover {
+	background-color: rgba(126, 95, 245, 1); 
+	transform: scale(1.1);                  
+  }
+  
+  .btn-home:active {
+	background-color: rgba(102, 79, 204, 1); 
+	transform: scale(1.0);
+  }
+  
+  .btn-home:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6); 
+  }

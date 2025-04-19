@@ -1,6 +1,13 @@
 <h2 mat-dialog-title><b>Información de Usuario</b></h2>
 <mat-dialog-content>
-  <p><strong>Email:</strong> {{ auth.user()?.email || 'No Logeado' }}</p>
+  @if(auth.user() !== null){
+    <p><strong>Email:</strong> {{ auth.user()?.email }}</p>
+    <p><strong>Nombre:</strong> {{ auth.user()?.user_metadata?.['name'] }}</p>
+    <p><strong>Apellido:</strong> {{ auth.user()?.user_metadata?.['surname'] }}</p>
+    <p><strong>Edad:</strong> {{ auth.user()?.user_metadata?.['age'] }}</p>
+  }@else {
+    <p><strong>Logeate para ver tu información</strong></p>
+  }
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cerrar</button>

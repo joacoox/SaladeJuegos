@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, output } from '@angular/cor
 import { AuthService } from '../../../../service/auth/auth.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,11 +14,16 @@ export class HeaderComponent {
   toggleSidebar = output<void>();
   auth = inject(AuthService);
   dialog = inject(MatDialog);
+  router = inject(Router);
 
   openUserModal() {
     this.dialog.open(UserModalComponent, {
       data: { email: this.auth.user()?.email }
     });
+  }
+  
+  goTo(path: string) {
+    this.router.navigateByUrl(path);
   }
 }
 

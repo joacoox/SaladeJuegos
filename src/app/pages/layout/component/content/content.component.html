@@ -1,5 +1,9 @@
 <div class="content">
-      <div class="dashboard-container">
-        <router-outlet />
+      <div class="dashboard-container">        
+        @if(router.url === '/home') {
+          <app-bienvenida></app-bienvenida>
+        }@else{
+          <router-outlet></router-outlet>
+        }
       </div>
 </div>

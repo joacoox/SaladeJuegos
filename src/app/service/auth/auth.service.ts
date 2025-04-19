@@ -13,27 +13,32 @@ export class AuthService {
   constructor() {
     this.supabase = createClient(urlSupaBase, token);
 
-    const { data } = this.supabase.auth.onAuthStateChange((event, session) => {   
+    this.supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'INITIAL_SESSION' || event === 'SIGNED_IN') {
-        if(session?.user !== null){
+        if (session?.user !== null) {
           this.user.set(session!.user);
           this.router.navigateByUrl("/home");
         }
       } else if (event === 'SIGNED_OUT') {
         this.user.set(null);
         this.router.navigateByUrl("/login");
-      } 
+      }
     })
-
-   // data.subscription.unsubscribe();
   }
 
-  async crearCuenta(email: string, password: string) {
+  async crearCuenta(email: string, password: string, name: string, surname: string, age: number) {
     const { data, error } = await this.supabase.auth.signUp({
       email: email,
       password: password,
+      options: {
+        data: {
+          name: name,
+          surname: surname,
+          age: age
+        }
+      }
     });
-    console.log(error);
+    return { data, error };
   }
 
   async iniciarSesion(email: string, password: string) {
@@ -41,6 +46,7 @@ export class AuthService {
       email: email,
       password: password,
     });
+    return { data, error };
   }
 
   async cerrarSesion() {
