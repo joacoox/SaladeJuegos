@@ -1,1 +1,16 @@
-<h2>Bienvenido a la sala de juegos</h2>
+<div class="bienvenida-component">
+  <div class="bienvenida-container">
+    <h2 class="titulo">¡Bienvenido a la Sala de Juegos!</h2>
+    <p class="subtitulo">Selecciona uno de los juegos y diviértete:</p>
+    <div class="grid-juegos">
+      @for (juego of juegos; track juego.nombre) {
+      <button routerLink="{{juego.ruta}}" class="card-juego">
+        "Ir al juego {{ juego.nombre }}"
+        <span class="icono">{{ juego.icono }}</span>
+        <span class="nombre">{{ juego.nombre }}</span>
+      </button>
+      }
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -6,7 +6,7 @@
 
 app-sidebar {
   width: 220px;
-  background-color: #1c112c;
+  background-color: #161a1d;
   color: white;
   height: 100vh;
   position: fixed;
@@ -26,8 +26,7 @@ app-sidebar {
 
 app-header {
   height: 60px;
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
+  background-color: #161a1d;
   position: fixed;
   top: 0;
   left: 220px;
@@ -38,7 +37,7 @@ app-header {
 
 app-footer {
   height: 50px;
-  background-color: #eee;
+  background-color: #161a1d;
   position: fixed;
   bottom: 0;
   left: 220px;
@@ -55,5 +54,5 @@ app-footer {
   padding: 1rem;
   height: calc(100vh - 110px); 
   overflow-y: auto;
-  background-color: #F7F8FA;
+  background-color: #343a40;
 }

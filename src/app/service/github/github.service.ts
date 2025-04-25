@@ -13,7 +13,6 @@ export class GithubService {
 
   getData(){
     const peticion: Observable<any> = this.httpClient.get<any>(urlGithub);
-    console.log(urlGithub)
     const suscripcion: Subscription = peticion.subscribe((respuesta) => {
       this.userDataDisplay.set(respuesta); 
       suscripcion.unsubscribe();

@@ -1,13 +1,46 @@
-@if (this.apiService.userDataDisplay()) {
+<div class="sobre-mi-container">
+  @if (this.apiService.userDataDisplay()) {
+    
   <div class="profile-card">
-    <img [src]="this.apiService.userDataDisplay().avatar_url" alt="Avatar del usuario" />
+    <img
+      [src]="this.apiService.userDataDisplay().avatar_url"
+      alt="Avatar del usuario"
+    />
     <div class="profile-info">
-      <h2>{{ this.apiService.userDataDisplay().name }}</h2>
+      
+      <h2>Perfil de {{ this.apiService.userDataDisplay().name }}</h2>
       <p><b>ID:</b> {{ this.apiService.userDataDisplay().id }}</p>
       <p><b>BIO:</b> {{ this.apiService.userDataDisplay().bio }}</p>
-      <p><b>HTML URL: </b> <a href="{{ this.apiService.userDataDisplay().html_url }}" target="_blank">{{ this.apiService.userDataDisplay().html_url }}</a></p>
+      <p>
+        <b>HTML URL: </b>
+        <a
+          href="{{ this.apiService.userDataDisplay().html_url }}"
+          target="_blank"
+          >{{ this.apiService.userDataDisplay().html_url }}</a
+        >
+      </p>
+      <p>
+        <b>Seguidores:</b> {{ this.apiService.userDataDisplay().followers }}
+      </p>
+      <p><b>Siguiendo:</b> {{ this.apiService.userDataDisplay().following }}</p>
+      <p>
+        <b>Repositorios Públicos:</b>
+        {{ this.apiService.userDataDisplay().public_repos }}
+      </p>
+      <p>
+        <b>Juego elegido:</b> Sudoku es un juego matemático que se inventó a
+        finales de la década de 1970, adquirió popularidad en Japón en la década
+        de 1980, y se dio a conocer en el ámbito internacional en 2005, cuando
+        numerosos periódicos empezaron a publicarlo en su sección de pasatiempos
+      </p>
+      <p>
+        <b>Como jugar:</b> El Sudoku es un juego de lógica que consiste en
+        rellenar una cuadrícula de 9x9 celdas con números del 1 al 9, de forma
+        que cada número aparezca una única vez en cada fila, columna y bloque de
+        3x3 celdas. El objetivo es completar las celdas vacías utilizando la
+        lógica y la eliminación de posibilidades.
+      </p>
     </div>
   </div>
-}
-
-
+  }
+</div>
