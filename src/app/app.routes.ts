@@ -35,7 +35,7 @@ export const routes: Routes = [
                         loadComponent: () => import("./juegos/sudoku/sudoku.component").then((c) => c.SudokuComponent)
                     }
                 ]
-            },
+            }, // comentario
         ]
     },
     {
