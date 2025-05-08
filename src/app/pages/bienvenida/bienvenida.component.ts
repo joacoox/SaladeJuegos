@@ -11,10 +11,10 @@ export class BienvenidaComponent {
   router = inject(Router);
 
   juegos = [
-    { nombre: 'Ahorcado', ruta: 'ahorcado', icono: '🤐'},
-    { nombre: 'Preguntados', ruta: 'preguntados', icono: '❓'},
-    { nombre: 'Mayor o Menor', ruta: 'mayor-menor', icono: '📈'},
-    { nombre: 'Sudoku', ruta: 'sudoku', icono: '🔢'}
+    { nombre: 'Ahorcado', ruta: '/home/ahorcado', icono: '🤐'},
+    { nombre: 'Preguntados', ruta: '/preguntados', icono: '❓'},
+    { nombre: 'Mayor o Menor', ruta: '/home/mayor-menor', icono: '📈'},
+    { nombre: 'Sudoku', ruta: '/sudoku', icono: '🔢'}
   ];
 
   irAJuego(ruta: string): void {

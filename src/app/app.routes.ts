@@ -17,25 +17,22 @@ export const routes: Routes = [
                 path: "bienvenida",
                 loadComponent: () => import("./pages/bienvenida/bienvenida.component").then((c) => c.BienvenidaComponent),
                 canActivateChild: [authGuard],
-                children: [
-                    {
-                        path: "ahorcado",
-                        loadComponent: () => import("./juegos/ahorcado/ahorcado.component").then((c) => c.AhorcadoComponent)
-                    },
-                    {
-                        path: "preguntados",
-                        loadComponent: () => import("./juegos/preguntados/preguntados.component").then((c) => c.PreguntadosComponent)
-                    },
-                    {
-                        path: "mayor-menor",
-                        loadComponent: () => import("./juegos/mayor-menor/mayor-menor.component").then((c) => c.MayorMenorComponent)
-                    },
-                    {
-                        path: "sudoku",
-                        loadComponent: () => import("./juegos/sudoku/sudoku.component").then((c) => c.SudokuComponent)
-                    }
-                ]
-            }, // comentario
+            },
+            {
+                path: "chat",
+                loadComponent: () => import("./pages/chat/chat.component").then((c) => c.ChatComponent),
+                canActivateChild: [authGuard],
+            },
+            {
+                path: "ahorcado",
+                loadComponent: () => import("./juegos/ahorcado/ahorcado.component").then((c) => c.AhorcadoComponent),
+                canActivate: [authGuard],
+            },
+            {
+                path: "mayor-menor",
+                loadComponent: () => import("./juegos/mayor-menor/mayor-menor.component").then((c) => c.MayorMenorComponent),
+                canActivate: [authGuard],
+            },
         ]
     },
     {
@@ -47,6 +44,16 @@ export const routes: Routes = [
         path: "registro",
         loadComponent: () => import("./pages/registro/registro.component").then((c) => c.RegistroComponent),
         canActivateChild: [userActiveGuard]
+    },
+    {
+        path: "preguntados",
+        loadComponent: () => import("./juegos/preguntados/preguntados.component").then((c) => c.PreguntadosComponent),
+        canActivate: [authGuard],
+    },
+    {
+        path: "sudoku",
+        loadComponent: () => import("./juegos/sudoku/sudoku.component").then((c) => c.SudokuComponent),
+        canActivate: [authGuard],
     },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', redirectTo: 'home' }

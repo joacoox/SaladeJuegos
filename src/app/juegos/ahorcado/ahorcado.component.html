@@ -1,1 +1,95 @@
-<p>ahorcado works!</p>
+<div style="width: 100%; height: 100vh; background-color: inherit">
+  <div class="container">
+    <div class="juego">
+        <span style="color: white"
+          >Reglas : Para ganar tenes que acertar las 3 palabras, tenes 6 fallos
+          permitidos en total.
+          <p>
+            <b
+              >Para comenzar a jugar aprente el boton "Jugar", una vez en
+              partida tendras que darle al boton "Comprobar Palabra" para
+              verificar si acertaste la palabra y cargar la siguiente
+            </b>
+          </p>
+        </span>
+      <div class="game-container">
+        <div class="words">
+          @if (word) {
+          <h1 style="margin: 0"><p class="prueba">Ahorcado</p></h1>
+          <ul class="word-container">
+            @for (space of emptySpaces; track $index) {
+            <li class="prueba">&nbsp;{{ space }}&nbsp;</li>
+            }
+          </ul>
+          }
+        </div>
+      </div>
+    </div>
+    <div class="teclado-arriba teclado-container">
+      <button id="q" class="key-button" (click)="DrawLetter('q')">q</button>
+      <button id="w" class="key-button" (click)="DrawLetter('w')">w</button>
+      <button id="e" class="key-button" (click)="DrawLetter('e')">e</button>
+      <button id="r" class="key-button" (click)="DrawLetter('r')">r</button>
+      <button id="t" class="key-button" (click)="DrawLetter('t')">t</button>
+      <button id="y" class="key-button" (click)="DrawLetter('y')">y</button>
+      <button id="u" class="key-button" (click)="DrawLetter('u')">u</button>
+      <button id="i" class="key-button" (click)="DrawLetter('i')">i</button>
+      <button id="o" class="key-button" (click)="DrawLetter('o')">o</button>
+      <button id="p" class="key-button" (click)="DrawLetter('p')">p</button>
+    </div>
+    <div class="teclado-medio teclado-container">
+      <button id="a" class="key-button" (click)="DrawLetter('a')">a</button>
+      <button id="s" class="key-button" (click)="DrawLetter('s')">s</button>
+      <button id="d" class="key-button" (click)="DrawLetter('d')">d</button>
+      <button id="f" class="key-button" (click)="DrawLetter('f')">f</button>
+      <button id="g" class="key-button" (click)="DrawLetter('g')">g</button>
+      <button id="h" class="key-button" (click)="DrawLetter('h')">h</button>
+      <button id="j" class="key-button" (click)="DrawLetter('j')">j</button>
+      <button id="k" class="key-button" (click)="DrawLetter('k')">k</button>
+      <button id="l" class="key-button" (click)="DrawLetter('l')">l</button>
+      <button id="ñ" class="key-button" (click)="DrawLetter('ñ')">ñ</button>
+    </div>
+    <div class="teclado-abajo teclado-container">
+      <button id="z" class="key-button" (click)="DrawLetter('z')">z</button>
+      <button id="x" class="key-button" (click)="DrawLetter('x')">x</button>
+      <button id="c" class="key-button" (click)="DrawLetter('c')">c</button>
+      <button id="v" class="key-button" (click)="DrawLetter('v')">v</button>
+      <button id="b" class="key-button" (click)="DrawLetter('b')">b</button>
+      <button id="n" class="key-button" (click)="DrawLetter('n')">n</button>
+      <button id="m" class="key-button" (click)="DrawLetter('m')">m</button>
+    </div>
+
+    <div class="hang-man">
+      <img src="{{ img[errorNumber] }}" class="hang-man-img" />
+      <h4><p class="prueba">Letras incorrectas:</p></h4>
+      <ul class="word-container">
+        @for (key of wrongKeys; track $index) {
+        <li class="wrongkey">&nbsp;{{ key }}-</li>
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="message-container">
+    @if (winFlag) {
+    <span class="message-winner">Ganaste!</span>
+    } @if (loseFlag) {
+    <span class="message-loser">Perdiste!</span>
+    }
+  </div>
+
+  <div class="button-placement">
+    @if(!loseFlag){
+    <button class="btn" (click)="StartGame()">
+      @if(word.length == 0){
+      <span class="text">Jugar</span>
+      } @else{
+      <span class="text">Comprobar Palabra</span>
+      }
+    </button>
+    } @if(winFlag == true || loseFlag == true){
+    <button class="btn" (click)="RestartGame()">
+      <span class="text">Reiniciar</span>
+    </button>
+    }
+  </div>
+</div>
