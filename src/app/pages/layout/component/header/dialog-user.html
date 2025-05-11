@@ -1,10 +1,10 @@
 <h2 mat-dialog-title><b>Información de Usuario</b></h2>
 <mat-dialog-content>
-  @if(auth.user() !== null){
+  @if(auth.user()?.email && userSignal()?.nombre !== undefined){
     <p><strong>Email:</strong> {{ auth.user()?.email }}</p>
-    <p><strong>Nombre:</strong> {{ auth.user()?.user_metadata?.['name'] }}</p>
-    <p><strong>Apellido:</strong> {{ auth.user()?.user_metadata?.['surname'] }}</p>
-    <p><strong>Edad:</strong> {{ auth.user()?.user_metadata?.['age'] }}</p>
+    <p><strong>Nombre:</strong> {{ userSignal()?.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ userSignal()?.apellido  }}</p>
+    <p><strong>Edad:</strong> {{ userSignal()?.edad  }}</p>
   }@else {
     <p><strong>Logeate para ver tu información</strong></p>
   }

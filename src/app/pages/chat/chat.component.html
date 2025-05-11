@@ -5,38 +5,36 @@
       <ul class="chat-list">
         @for (chat of chats(); track $index) {
         <li id="li-chat">
-          @if(isCurrentUser(chat.id_usuario)){
+          @if(isCurrentUser(chat.personas?.email)){
           <span class="sent">
             <span> {{ chat.mensaje }}<br /> </span>
             <span class="fecha">
-               {{chat.created_at | date : "short"}} 
+              {{ chat.created_at | date : "short" }}
             </span>
           </span>
           }@else {
           <span class="received">
-            <span>{{ chat.personas?.nombre }}: </span>
+            <span>{{ chat.personas?.nombre }} {{chat.personas?.apellido }}: </span>
             <span>
               {{ chat.mensaje }}<br />
               <span class="fecha">
-                 {{chat.created_at | date : "short"}}
+                {{ chat.created_at | date : "short" }}
               </span>
             </span>
           </span>
-          }
-        </li>
         }
+        </li>    
+      }
       </ul>
     </div>
     <div class="chat-input">
       <input
         type="text"
-        id="message-input"
+        [(ngModel)]="message"
         class="chat-input"
         placeholder="Type your message here"
       />
-      <button id="send-button" class="send-button" (click)="EnviarMensaje()">
-        Send
-      </button>
+      <button id="send-button" class="send-button" (click)="EnviarMensaje()">Send</button>
     </div>
   </div>
 </div>

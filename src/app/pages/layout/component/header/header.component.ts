@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, output, signal } from '@angular/core';
 import { AuthService } from '../../../../service/auth/auth.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { IPersona } from '../../../../types/persona';
 
 @Component({
   selector: 'app-header',
@@ -33,6 +34,16 @@ export class HeaderComponent {
   imports: [MatDialogModule, MatButtonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserModalComponent {
+export class UserModalComponent implements OnInit{
+
   auth = inject(AuthService);
+  userSignal = signal<IPersona | undefined>(undefined);
+
+  async ngOnInit(): Promise<void> {
+    let data = await this.auth.getInfo();
+    this.userSignal.set(data as unknown as IPersona);
+  }
+  
+
+
 }
