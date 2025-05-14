@@ -1,20 +1,31 @@
 <div id="contenedor-chat">
   <div class="chat">
     <div class="chat-header">Chat</div>
-    <div class="chat-window">
+    <div class="chat-window" #chatWindow (scroll)="onChatScroll()">
       <ul class="chat-list">
         @for (chat of chats(); track $index) {
-        <li id="li-chat">
-          @if(isCurrentUser(chat.personas?.email)){
+        @if(isCurrentUser(chat.personas?.email)){
+        <li
+          id="li-chat"
+          [style.background]="getUserColor(chat.personas!.email)"
+          style="margin-left: 40px;"
+        >
           <span class="sent">
             <span> {{ chat.mensaje }}<br /> </span>
             <span class="fecha">
               {{ chat.created_at | date : "short" }}
             </span>
           </span>
-          }@else {
+        </li>
+        }@else {
+        <li
+          id="li-chat"
+          [style.background]="getUserColor(chat.personas!.email)"
+        >
           <span class="received">
-            <span>{{ chat.personas?.nombre }} {{chat.personas?.apellido }}: </span>
+            <span
+              >{{ chat.personas?.nombre }} {{ chat.personas?.apellido }}:
+            </span>
             <span>
               {{ chat.mensaje }}<br />
               <span class="fecha">
@@ -22,9 +33,8 @@
               </span>
             </span>
           </span>
-        }
-        </li>    
-      }
+        </li>
+        } }
       </ul>
     </div>
     <div class="chat-input">
@@ -34,7 +44,9 @@
         class="chat-input"
         placeholder="Type your message here"
       />
-      <button id="send-button" class="send-button" (click)="EnviarMensaje()">Send</button>
+      <button id="send-button" class="send-button" (click)="EnviarMensaje()">
+        Send
+      </button>
     </div>
   </div>
 </div>

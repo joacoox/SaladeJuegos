@@ -96,13 +96,150 @@ export class AuthService {
     const { data } = await this.supabase
       .from('chat')
       .select(`
-      id, 
-      created_at,
-      mensaje,
-      personas (id, nombre, apellido, edad, email)
-    `); 
+        id, 
+        created_at,
+        mensaje,
+        personas (id, nombre, apellido, edad, email)
+      `)
+      .order('created_at', { ascending: true });
 
-    return data as unknown as IMensaje[] || null;
+    return (data as unknown as IMensaje[]) || null;
   }
 
+  async subirScoreMayorOMenor(score: number) {
+    const { data } = await this.supabase
+      .from('scoreMayorMenor')
+      .select(`
+        id, 
+        scored_at,
+        email_usuario,
+        mejor_puntaje
+      `)
+      .eq("email_usuario", this.user()?.email)
+      .limit(1);
+
+    if (!data || data.length === 0) {
+      await this.supabase
+        .from('scoreMayorMenor')
+        .insert({
+          email_usuario: this.user()?.email,
+          mejor_puntaje: score,
+          scored_at: new Date().toISOString()
+        });
+    } else {
+      const currentScore = data[0].mejor_puntaje;
+      if (currentScore === null || score > currentScore) {
+        await this.supabase
+          .from('scoreMayorMenor')
+          .update({
+            mejor_puntaje: score,
+            scored_at: new Date().toISOString()
+          })
+          .eq('email_usuario', this.user()?.email);
+      }
+    }
+  }
+
+  async subirScorePreguntados(score: number) {
+    const { data } = await this.supabase
+      .from('scorePreguntados')
+      .select(`
+        id, 
+        scored_at,
+        email_usuario,
+        mejor_puntaje
+      `)
+      .eq("email_usuario", this.user()?.email)
+      .limit(1);
+
+    if (!data || data.length === 0) {
+      await this.supabase
+        .from('scorePreguntados')
+        .insert({
+          email_usuario: this.user()?.email,
+          mejor_puntaje: score,
+          scored_at: new Date().toISOString()
+        });
+    } else {
+      const currentScore = data[0].mejor_puntaje;
+      if (currentScore === null || score > currentScore) {
+        await this.supabase
+          .from('scorePreguntados')
+          .update({
+            mejor_puntaje: score,
+            scored_at: new Date().toISOString()
+          })
+          .eq('email_usuario', this.user()?.email);
+      }
+    }
+  }
+
+  async subirScoreAhorcado(score: number) {
+    const { data } = await this.supabase
+      .from('scoreAhorcado')
+      .select(`
+        id, 
+        scored_at,
+        email_usuario,
+        mejor_puntaje
+      `)
+      .eq("email_usuario", this.user()?.email)
+      .limit(1);
+
+    if (!data || data.length === 0) {
+      await this.supabase
+        .from('scoreAhorcado')
+        .insert({
+          email_usuario: this.user()?.email,
+          mejor_puntaje: score,
+          scored_at: new Date().toISOString()
+        });
+    } else {
+      const currentScore = data[0].mejor_puntaje;
+      if (currentScore === null || score > currentScore) {
+        await this.supabase
+          .from('scoreAhorcado')
+          .update({
+            mejor_puntaje: score,
+            scored_at: new Date().toISOString()
+          })
+          .eq('email_usuario', this.user()?.email);
+      }
+    }
+  }
+
+  async subirScoreSudoku(score: number, timeToFinish : string) {
+    const { data } = await this.supabase
+      .from('scoreSudoku')
+      .select(`
+        id, 
+        scored_at,
+        email_usuario,
+        mejor_puntaje,
+        time_to_finish
+      `)
+      .eq("email_usuario", this.user()?.email)
+      .limit(1);
+
+    if (!data || data.length === 0) {
+      await this.supabase
+        .from('scoreSudoku')
+        .insert({
+          email_usuario: this.user()?.email,
+          mejor_puntaje: score,
+          scored_at: new Date().toISOString()
+        });
+    } else {
+      const currentScore = data[0].mejor_puntaje;
+      if (currentScore === null || score > currentScore) {
+        await this.supabase
+          .from('scoreSudoku')
+          .update({
+            mejor_puntaje: score,
+            scored_at: new Date().toISOString()
+          })
+          .eq('email_usuario', this.user()?.email);
+      }
+    }
+  }
 }

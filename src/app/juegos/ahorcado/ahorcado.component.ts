@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -8,10 +10,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ahorcado.component.css'
 })
 export class AhorcadoComponent implements OnInit {
+  router = inject(Router);
   word: Array<string> = [];
   emptySpaces: string[] = [];
   wrongKeys: string[] = [];
   wordIndex: number = 0;
+  supabase = inject(AuthService);
   winFlag: boolean = false;
   img: Array<string> = ["./assets/ahorcado/ahorcado-cero.png",
     "./assets/ahorcado/ahorcado-uno.png",
@@ -21,7 +25,7 @@ export class AhorcadoComponent implements OnInit {
     "./assets/ahorcado/ahorcado-cinco.png",
     "./assets/ahorcado/ahorcado-seis.png"
   ];
-
+  score : number = 0;
   errorNumber: number = 0;
   loseFlag: boolean = false;
   //ahorcado = inject(AhorcadoService);
@@ -29,7 +33,7 @@ export class AhorcadoComponent implements OnInit {
   ngOnInit(): void {
     /*this.LoadNewWord(); // cargo 3 palabras ni bien inicia el componente
     console.log(this.word)*/
-    console.log(this.word)
+    //console.log(this.word)
   }
   StartGame() {
     this.LoadNewWord();
@@ -109,16 +113,19 @@ export class AhorcadoComponent implements OnInit {
                   this.wrongKeys[this.wrongKeys.length] = letter;
                   if (this.errorNumber == 6) {
                     this.loseFlag = true;
+                    this.supabase.subirScoreAhorcado(this.score);
                   }
                 }
 
               }
             } else {
               this.winFlag = true;
+              this.supabase.subirScoreAhorcado(this.score);
             }
 
           } else {
             this.loseFlag = true;
+            this.supabase.subirScoreAhorcado(this.score);
           }
         }
       }
@@ -131,6 +138,7 @@ export class AhorcadoComponent implements OnInit {
       this.wordIndex += 1;
       this.EnableButtons();
       this.wrongKeys = [];
+      this.score++;
     }
   }
 
@@ -142,5 +150,9 @@ export class AhorcadoComponent implements OnInit {
 
   removeAccents(palabra: any) {
     return palabra.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  goTo(){
+    this.router.navigateByUrl("/home/bienvenida");
   }
 }

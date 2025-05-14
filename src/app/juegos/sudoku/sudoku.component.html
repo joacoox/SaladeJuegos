@@ -1,1 +1,89 @@
-<p>sudoku works!</p>
+<div style="width: 100%; height: 100vh; background-color: black">
+  <button class="button" (click)="goTo()">
+    <div class="button-box">
+      <span class="button-elem">
+        <svg viewBox="0 0 46 40" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+          ></path>
+        </svg>
+      </span>
+      <span class="button-elem">
+        <svg viewBox="0 0 46 40">
+          <path
+            d="M46 20.038c0-.7-.3-1.5-.8-2.1l-16-17c-1.1-1-3.2-1.4-4.4-.3-1.2 1.1-1.2 3.3 0 4.4l11.3 11.9H3c-1.7 0-3 1.3-3 3s1.3 3 3 3h33.1l-11.3 11.9c-1 1-1.2 3.3 0 4.4 1.2 1.1 3.3.8 4.4-.3l16-17c.5-.5.8-1.1.8-1.9z"
+          ></path>
+        </svg>
+      </span>
+    </div>
+  </button>
+  <div class="sudoku">
+    <h1 style="color: white;">Sudoku</h1>
+    @if(isLoading()) {
+    <div class="loading">
+      <h4>Cargando ...</h4>
+      <p></p>
+    </div>
+    } @else {
+    <table class="board">
+      <div class="timer">
+        {{ formattedTime }}
+      </div>
+      @for (i of [0, 1, 2]; track $index) {
+      <tr>
+        @for (j of [0, 1, 2]; track $index) {
+        <td>
+          <div class="block">
+            @for (row of [0, 1, 2]; track $index) {
+            <div class="row">
+              @for (col of [0, 1, 2]; track $index) {
+              <div>
+                <input
+                  type="number"
+                  min="1"
+                  max="9"
+                  class="box"
+                  oninput="javascript: 
+                if (this.value > 9 || this.value < 0) this.value = this.value.slice(0, this.value.length - 1);
+                if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
+                if(this.value === '' || this.value === undefined) this.value = 0;"
+                  inputmode="numeric"
+                  maxlength="1"
+                  [valueAsNumber]="0"
+                  [value]="playerBoard[i * 3 + row][j * 3 + col]"
+                  
+                  (input)="updateCell($event, i * 3 + row, j * 3 + col)"
+                />  <!-- [readonly]="compareBoards(i * 3 + row, j * 3 + col)" -->
+              </div> 
+              }
+            </div>
+            }
+          </div>
+        </td>
+        }
+      </tr>
+      }
+    </table>
+    }
+  </div>
+  <div class="buttons">
+    @if(gameOver){
+    <div class="message-container">
+      @if(gameWon){
+      <span class="message winner">Ganaste!</span>
+      }@else{
+      <span class="message loser">Perdiste!</span>
+      }
+    </div>
+    }
+
+    <button (click)="checkBoard()" class="btn">Chequear</button>
+    <button (click)="completeBoard()" class="btn">Completar</button>
+
+    @if(gameOver){ @if(gameWon){
+    <button (click)="newGame()" class="btn">Jugar de nuevo</button>
+    }@else{
+    <button (click)="newGame()" class="btn">Jugar de nuevo</button>
+    } }
+  </div>
+</div>

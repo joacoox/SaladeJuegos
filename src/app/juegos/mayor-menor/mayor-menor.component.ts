@@ -1,6 +1,8 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ICard } from '../../types/card';
 import { MayormenorService } from '../../service/mayormenor/mayormenor.service';
+import { Router } from '@angular/router';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -9,7 +11,8 @@ import { MayormenorService } from '../../service/mayormenor/mayormenor.service';
   styleUrl: './mayor-menor.component.css'
 })
 export class MayorMenorComponent implements OnInit{
-
+  router = inject(Router);
+  supabase = inject(AuthService);
   cards: ICard[] = [];
   currentCard = signal<ICard | undefined >(undefined);
   nextCard: ICard | null = null;
@@ -68,6 +71,7 @@ export class MayorMenorComponent implements OnInit{
         this.lives -= 1;
         if (this.lives <= 0) {
           this.gameOver = true;
+          this.supabase.subirScoreMayorOMenor(this.score);
         }
       }
 
@@ -77,6 +81,7 @@ export class MayorMenorComponent implements OnInit{
           this.nextCard = drawResponse.cards[0];
           if (drawResponse.remaining === 0) {
             this.gameOver = true;
+            this.supabase.subirScoreMayorOMenor(this.score);
           }
         });
       }
@@ -109,5 +114,9 @@ export class MayorMenorComponent implements OnInit{
       'KING': 13
     };
     return values[value.toUpperCase()];
+  }
+
+  goTo(){
+    this.router.navigateByUrl("/home/bienvenida");
   }
 }

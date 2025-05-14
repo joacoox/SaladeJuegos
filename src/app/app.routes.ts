@@ -33,6 +33,16 @@ export const routes: Routes = [
                 loadComponent: () => import("./juegos/mayor-menor/mayor-menor.component").then((c) => c.MayorMenorComponent),
                 canActivate: [authGuard],
             },
+            {
+                path: "preguntados",
+                loadComponent: () => import("./juegos/preguntados/preguntados.component").then((c) => c.PreguntadosComponent),
+                canActivate: [authGuard],
+            },
+            {
+                path: "sudoku",
+                loadComponent: () => import("./juegos/sudoku/sudoku.component").then((c) => c.SudokuComponent),
+                canActivate: [authGuard],
+            },
         ]
     },
     {
@@ -44,16 +54,6 @@ export const routes: Routes = [
         path: "registro",
         loadComponent: () => import("./pages/registro/registro.component").then((c) => c.RegistroComponent),
         canActivateChild: [userActiveGuard]
-    },
-    {
-        path: "preguntados",
-        loadComponent: () => import("./juegos/preguntados/preguntados.component").then((c) => c.PreguntadosComponent),
-        canActivate: [authGuard],
-    },
-    {
-        path: "sudoku",
-        loadComponent: () => import("./juegos/sudoku/sudoku.component").then((c) => c.SudokuComponent),
-        canActivate: [authGuard],
     },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', redirectTo: 'home' }

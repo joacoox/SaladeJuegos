@@ -12,9 +12,9 @@ export class BienvenidaComponent {
 
   juegos = [
     { nombre: 'Ahorcado', ruta: '/home/ahorcado', icono: '🤐'},
-    { nombre: 'Preguntados', ruta: '/preguntados', icono: '❓'},
+    { nombre: 'Preguntados', ruta: '/home/preguntados', icono: '❓'},
     { nombre: 'Mayor o Menor', ruta: '/home/mayor-menor', icono: '📈'},
-    { nombre: 'Sudoku', ruta: '/sudoku', icono: '🔢'}
+    { nombre: 'Sudoku', ruta: '/home/sudoku', icono: '🔢'}
   ];
 
   irAJuego(ruta: string): void {

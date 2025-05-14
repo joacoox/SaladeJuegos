@@ -89,7 +89,7 @@ export class LoginComponent {
 
   async AutoLogin() {
     try {
-      await this.auth.iniciarSesion("joaquinarieldominguez@gmail.com", "123456");
+      await this.auth.iniciarSesion("joaquinarieldominguez@gmail.com", "123123");
     } catch (error) {
       this.flagError.set(true);
       this.msjError = "Error al iniciar sesion";
