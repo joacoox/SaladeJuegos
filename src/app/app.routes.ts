@@ -21,7 +21,7 @@ export const routes: Routes = [
             {
                 path: "chat",
                 loadComponent: () => import("./pages/chat/chat.component").then((c) => c.ChatComponent),
-                canActivateChild: [authGuard],
+                canActivate: [authGuard],
             },
             {
                 path: "ahorcado",
