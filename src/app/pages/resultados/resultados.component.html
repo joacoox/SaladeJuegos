@@ -1,0 +1,110 @@
+<div class="resultados-container">
+  <h2>Resultados de los Juegos</h2>
+  <div class="resultados-grid">
+    <section class="score-section">
+      <h3>Ahorcado</h3>
+      <div class="table-scroll">
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th>Posición</th>
+              <th>Email</th>
+              <th>Mejor Puntaje</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of ahorcadoScores(); track item.id) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ item.email_usuario }}</td>
+              <td>{{ item.mejor_puntaje }}</td>
+              <td>{{ item.scored_at | date : "short" }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="score-section">
+      <h3>Preguntados</h3>
+      <div class="table-scroll">
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th>Posición</th>
+              <th>Email</th>
+              <th>Mejor Puntaje</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of preguntadosScores(); track item.id) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ item.email_usuario }}</td>
+              <td>{{ item.mejor_puntaje }}</td>
+              <td>{{ item.scored_at | date : "short" }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="score-section">
+      <h3>Mayor o Menor</h3>
+      <div class="table-scroll">
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th>Posición</th>
+              <th>Email</th>
+              <th>Mejor Puntaje</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of mayorMenorScores(); track item.id) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ item.email_usuario }}</td>
+              <td>{{ item.mejor_puntaje }}</td>
+              <td>{{ item.scored_at | date : "short" }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="score-section">
+      <h3>Sudoku</h3>
+      <div class="table-scroll">
+        <table class="score-table">
+          <thead>
+            <tr>
+              <th>Posición</th>
+              <th>Email</th>
+              <th>Mejor Puntaje</th>
+              <th>Fecha</th>
+              <th>Tiempo restante</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of sudokuScores(); track item.id) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ item.email_usuario }}</td>
+              <td>{{ item.mejor_puntaje }}</td>
+              <td>{{ item.scored_at | date : "short" }}</td>
+              <td>{{ item.time_left }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>

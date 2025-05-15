@@ -30,7 +30,7 @@
   <h2 class="texto-blanco">Vidas: {{ lives }}</h2>
   } @if(gameOver){
   <h2 class="texto-blanco">Perdiste!</h2>
-  <p class="texto-blanco">Tu puntaje es final: {{ score }}</p>
+  <p class="texto-blanco" style="color: white;">Tu puntaje es final: {{ score }}</p>
   <button (click)="resetGame()" class="btn">Jugar de nuevo</button>
   }
 </div>

@@ -1,0 +1,100 @@
+.resultados-container {
+    padding: 20px;
+    background-color: #121212; 
+    color: #e0e0e0;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+  }
+  
+  .score-section {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+  
+    h3 {
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      color: #90caf9; 
+      text-align: center;
+    }
+  }
+  
+  .score-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e1e1e; 
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  
+    th,
+    td {
+      padding: 12px 15px;
+      text-align: center;
+      border-bottom: 1px solid #333; 
+      color: #e0e0e0;
+    }
+  
+    th {
+      background-color: #263238; 
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+  
+    tbody tr:hover {
+      background-color: #2a2a2a;
+    }
+  }
+  
+  .resultados-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 40px;
+  }
+  
+  .table-scroll-vertical {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #333;
+    border-radius: 4px;
+  }
+  
+  .table-scroll-vertical .score-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .table-scroll-vertical thead {
+    position: sticky;
+    top: 0;
+    background: #37474f; 
+    color: white;
+    z-index: 1;
+  }
+  
+  .score-table th,
+  .score-table td {
+    padding: 12px 15px;
+    text-align: center; 
+    border-bottom: 1px solid #444;
+    color: white;
+  }
+  
+  .score-table tbody tr:hover {
+    background-color: #2e2e2e;
+  }
+  
+  .score-table td:nth-child(3) {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: #ffca28; 
+  }
+  

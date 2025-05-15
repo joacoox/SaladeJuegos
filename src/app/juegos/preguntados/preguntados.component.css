@@ -70,15 +70,15 @@
   transition: 0.4s;
   transform: translateX(-56px);
 }
-/*
-div {
+
+.div {
     text-align: center;
     margin-top: 20px;
   }
   
-  img {
+.img {
     margin-bottom: 20px;
-  } */
+  } 
   
   .options-container {
     display: grid;

@@ -43,6 +43,11 @@ export const routes: Routes = [
                 loadComponent: () => import("./juegos/sudoku/sudoku.component").then((c) => c.SudokuComponent),
                 canActivate: [authGuard],
             },
+            {
+                path: "resultados",
+                loadComponent: () => import("./pages/resultados/resultados.component").then((c) => c.ResultadosComponent),
+                canActivate: [],
+            },
         ]
     },
     {

@@ -87,13 +87,25 @@
       </ul>
     </div>
   </div>
-  <div class="message-container">
-    @if (winFlag) {
-    <span class="message-winner">Ganaste!</span>
-    } @if (loseFlag) {
-    <span class="message-loser">Perdiste!</span>
-    }
-  </div>
+
+  @if(winFlag || loseFlag) {
+    <div class="overlay">
+      <div class="message-container">
+        @if(winFlag) {
+          <span class="message winner">
+            <h4>¡Ganaste!</h4>
+            <button (click)="RestartGame()" class="btn">Jugar de nuevo</button>
+          </span>
+        }
+        @if(loseFlag){
+          <span class="message loser">
+            <h4>¡Perdiste!</h4>
+            <button (click)="RestartGame()" class="btn">Jugar de nuevo</button>
+          </span>
+        }
+      </div>
+    </div>
+  }
 
   <div class="button-placement">
     @if(!loseFlag){
@@ -103,10 +115,6 @@
       } @else{
       <span class="text">Comprobar Palabra</span>
       }
-    </button>
-    } @if(winFlag == true || loseFlag == true){
-    <button class="btn" (click)="RestartGame()">
-      <span class="text">Reiniciar</span>
     </button>
     }
   </div>

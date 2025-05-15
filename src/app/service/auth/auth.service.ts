@@ -208,7 +208,7 @@ export class AuthService {
     }
   }
 
-  async subirScoreSudoku(score: number, timeToFinish : string) {
+  async subirScoreSudoku(score: number, timeLeft: string) {
     const { data } = await this.supabase
       .from('scoreSudoku')
       .select(`
@@ -216,7 +216,7 @@ export class AuthService {
         scored_at,
         email_usuario,
         mejor_puntaje,
-        time_to_finish
+        time_left
       `)
       .eq("email_usuario", this.user()?.email)
       .limit(1);
@@ -227,7 +227,8 @@ export class AuthService {
         .insert({
           email_usuario: this.user()?.email,
           mejor_puntaje: score,
-          scored_at: new Date().toISOString()
+          scored_at: new Date().toISOString(),
+          time_left: timeLeft
         });
     } else {
       const currentScore = data[0].mejor_puntaje;
@@ -236,10 +237,42 @@ export class AuthService {
           .from('scoreSudoku')
           .update({
             mejor_puntaje: score,
-            scored_at: new Date().toISOString()
+            scored_at: new Date().toISOString(),
+            time_left: timeLeft
           })
           .eq('email_usuario', this.user()?.email);
       }
     }
   }
+
+  async getScore(tableName: string) {
+    const { data } = await this.supabase
+      .from(tableName)
+      .select(`
+      id, 
+      scored_at,
+      email_usuario,
+      mejor_puntaje
+    `)
+      .order('mejor_puntaje', { ascending: false });
+
+    return data;
+  }
+  async getScoreSudoku() {
+    const { data } = await this.supabase
+      .from('scoreSudoku')
+      .select(`
+      id, 
+      scored_at,
+      email_usuario,
+      mejor_puntaje,
+      time_left
+    `)
+      .order('time_left', { ascending: false });
+
+    return data;
+  }
+
+
+
 }

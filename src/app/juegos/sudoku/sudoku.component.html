@@ -17,73 +17,69 @@
       </span>
     </div>
   </button>
-  <div class="sudoku">
-    <h1 style="color: white;">Sudoku</h1>
-    @if(isLoading()) {
-    <div class="loading">
-      <h4>Cargando ...</h4>
-      <p></p>
-    </div>
-    } @else {
-    <table class="board">
+  <div class="sudoku-container">
+    
+    <header class="sudoku-header">
+      <h1>Sudoku</h1>
       <div class="timer">
         {{ formattedTime }}
       </div>
-      @for (i of [0, 1, 2]; track $index) {
-      <tr>
-        @for (j of [0, 1, 2]; track $index) {
-        <td>
-          <div class="block">
-            @for (row of [0, 1, 2]; track $index) {
-            <div class="row">
-              @for (col of [0, 1, 2]; track $index) {
-              <div>
-                <input
-                  type="number"
-                  min="1"
-                  max="9"
-                  class="box"
-                  oninput="javascript: 
-                if (this.value > 9 || this.value < 0) this.value = this.value.slice(0, this.value.length - 1);
-                if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);
-                if(this.value === '' || this.value === undefined) this.value = 0;"
-                  inputmode="numeric"
-                  maxlength="1"
-                  [valueAsNumber]="0"
-                  [value]="playerBoard[i * 3 + row][j * 3 + col]"
-                  
-                  (input)="updateCell($event, i * 3 + row, j * 3 + col)"
-                />  <!-- [readonly]="compareBoards(i * 3 + row, j * 3 + col)" -->
-              </div> 
-              }
-            </div>
-            }
-          </div>
-        </td>
+    </header>
+
+
+    @if(gameOver) {
+    <div class="overlay">
+      <div class="message-container">
+        @if(gameWon) {
+          <span class="message winner">
+            <h4>¡Ganaste!</h4>
+            <button (click)="newGame()" class="btn">Jugar de nuevo</button>
+          </span>
+        } @else {
+          <span class="message loser">
+            <h4>¡Perdiste!</h4>
+            <button (click)="newGame()" class="btn">Jugar de nuevo</button>
+          </span>
         }
-      </tr>
-      }
-    </table>
+      </div>
+    </div>
+  }
+  
+  <div class="board-wrapper">
+    @if(isLoading()) {
+      <div class="loading">
+        <h4>Cargando…</h4>
+      </div>
+    } @else {
+      <table class="board">
+        @for (i of [0,1,2]; track $index) {
+          <tr>
+            @for (j of [0,1,2]; track $index) {
+              <td>
+                <div class="block">
+                  @for (row of [0,1,2]; track $index) {
+                    <div class="row">
+                      @for (col of [0,1,2]; track $index) {
+                        <input
+                          type="number" min="1" max="9"
+                          class="box"
+                          maxlength="1"
+                          [value]="playerBoard[i*3+row][j*3+col]"
+                          (input)="updateCell($event, i*3+row, j*3+col)"
+                        />
+                      }
+                    </div>
+                  }
+                </div>
+              </td>
+            }
+          </tr>
+        }
+      </table>
     }
   </div>
   <div class="buttons">
-    @if(gameOver){
-    <div class="message-container">
-      @if(gameWon){
-      <span class="message winner">Ganaste!</span>
-      }@else{
-      <span class="message loser">Perdiste!</span>
-      }
-    </div>
-    }
-
     <button (click)="checkBoard()" class="btn">Chequear</button>
     <button (click)="completeBoard()" class="btn">Completar</button>
-
-    @if(gameOver){ @if(gameWon){
-    <button (click)="newGame()" class="btn">Jugar de nuevo</button>
-    }@else{
-    <button (click)="newGame()" class="btn">Jugar de nuevo</button>
-    } }
   </div>
 </div>

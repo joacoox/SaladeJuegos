@@ -66,6 +66,7 @@ export class AhorcadoComponent implements OnInit {
     this.errorNumber = 0;
     this.loseFlag = false;
     this.wrongKeys = [];
+    this.StartGame();
   }
 
   LoadNewWord() {

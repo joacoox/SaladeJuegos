@@ -2,6 +2,7 @@ import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { SudokuService } from '../../service/sudoku/sudoku.service';
 import { Router } from '@angular/router';
 import { Subscription, takeWhile, timer } from 'rxjs';
+import { AuthService } from '../../service/auth/auth.service';
 
 @Component({
   selector: 'app-sudoku',
@@ -21,6 +22,7 @@ export class SudokuComponent implements OnInit, OnDestroy {
   initialTime: number = 600; 
   timeLeft = signal<number>(this.initialTime);
   private countdownSubscription!: Subscription;
+  supabase = inject(AuthService);
 
   ngOnInit(): void {
     this.fetchSudokuBoard();
@@ -87,10 +89,8 @@ export class SudokuComponent implements OnInit, OnDestroy {
         }
       }
     }
-
-    if (this.gameWon) {
       this.stopCountdown();
-    }
+      this.supabase.subirScoreSudoku(5000, this.formattedTime);
   }
 
   newGame(): void {
@@ -113,7 +113,6 @@ export class SudokuComponent implements OnInit, OnDestroy {
     const input = event.target as HTMLInputElement;
     const value = parseInt(input.value) || 0;
     
-    // Actualizamos el tablero del jugador
     this.playerBoard[row][col] = value;
   }
   goTo(){

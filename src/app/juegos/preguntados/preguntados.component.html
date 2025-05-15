@@ -1,4 +1,4 @@
-<div style="width: 100%; height: 100vh; background-color: black; margin: 0; padding: 0;">
+<div style="width: 100%; height: 100vh; background-color: black; margin: 0; padding: 0;" class="div">
   <button class="button" (click)="goTo()">
     <div class="button-box">
       <span class="button-elem">
@@ -22,11 +22,12 @@
   @if(currentCountry() !== undefined){
   <img
     [src]="currentCountry().flags.png"
+    class="img"
     alt="Bandera de {{ currentCountry().name.common }}"
     width="200"
   />
   }
-  <div class="options-container">
+  <div class="options-container div">
     @for (option of options(); track $index) {
     <div class="option">
       <button (click)="checkAnswer(option)" class="btn">{{ option }}</button>
